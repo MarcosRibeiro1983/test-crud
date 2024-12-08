@@ -1,0 +1,83 @@
+
+<div class="container mt-5">
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-stripe">
+                    <thead>
+                      <tr>
+                        <th >Indice</th>
+                        <th >Nome</th>
+                        <th >Idade</th>
+                        <th >Descrição</th> 
+                        <th class="text-end" >Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of userList; index as  i">
+                        <th scope="row">#{{i + 1}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.age}}</td>
+                        <td>{{item.desc}}</td>
+                        <td class="text-end">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setForm(item)" class="btn btn-outline-primary btn-sm me-2">Editar</button>
+                            <button type="button" (click)="delete(item.id)" class="btn btn-outline-primary btn-sm">Remover</button>
+                        </td>
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+                  
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria- 
+  labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel">Atualizar o usuário {{ user ? user.name : '' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+       aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+    
+            <div class="mb-3">
+                <label class="text-muted mb-2">Nome</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="mb-3">
+                <label class="text-muted mb-2" >Idade</label>
+                <input type="text" class="form-control" formControlName="age">
+
+            </div>
+
+            <div class="mb-3">
+                <label class="text-muted mb-2" >Descrição</label>
+                <input type="text" class="form-control" formControlName="desc">
+            </div>
+            
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+        
+        <button type="button" class="btn btn-primary" (click)="update()" data-bs-dismiss="modal">Atualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
